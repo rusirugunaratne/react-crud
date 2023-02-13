@@ -10,6 +10,7 @@ type StudentDetails = {
   index: number;
   telephone: string;
   onDelete: any;
+  onUpdate: any;
 };
 
 export const DetailStudent = (props: StudentDetails) => {
@@ -23,7 +24,7 @@ export const DetailStudent = (props: StudentDetails) => {
       <StyledTableCell align="right">{props.index}</StyledTableCell>
       <StyledTableCell align="right">{props.telephone}</StyledTableCell>
       <StyledTableCell align="right">
-        <Button variant="contained" color="success">
+        <Button onClick={props.onUpdate} variant="contained" color="success">
           EDIT
         </Button>
       </StyledTableCell>

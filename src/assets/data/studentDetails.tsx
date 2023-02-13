@@ -1,4 +1,4 @@
-const studentData = [
+const studentDetails = [
   {
     id: 1,
     image:
@@ -18,4 +18,4 @@ const studentData = [
   },
 ];
 
-export { studentData };
+export { studentDetails };

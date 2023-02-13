@@ -14,7 +14,7 @@ type AddStudentPopupProps = {
   onAdd: any;
 };
 
-export const AddStudentPopup = (props: AddStudentPopupProps) => {
+export const EditStudentPopup = (props: AddStudentPopupProps) => {
   const [open, setOpen] = useState(props.open);
   const [image, setImage] = useState("");
   const [fname, setFname] = useState("");

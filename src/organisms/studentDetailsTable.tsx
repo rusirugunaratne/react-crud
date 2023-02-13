@@ -7,13 +7,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { DetailStudent } from "../molecules/detailStudent";
 import { StyledTableCell } from "../molecules/tableViews";
-import { studentData } from "../assets/data/studentData";
+import { studentDetails } from "../assets/data/studentDetails";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { AddStudentPopup } from "../molecules/addStudentPopup";
 
 function StudentsDetailsTable() {
-  const [open, setOpen] = useState(false);
+  const [openAdd, setOpen] = useState(false);
+  const [students, setStudents] = useState(studentDetails);
 
   const handleOnClick = () => {
     setOpen(true);
@@ -22,8 +23,6 @@ function StudentsDetailsTable() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const [students, setStudents] = useState(studentData);
 
   const handleDelete = (id: number) => {
     setStudents(
@@ -35,7 +34,7 @@ function StudentsDetailsTable() {
 
   const handleAdd = (studentData: any) => {
     const newStudent = {
-      id: 10,
+      id: students[students.length - 1].id + 1,
       image: studentData.image,
       fname: studentData.fname,
       lname: studentData.lname,
@@ -44,6 +43,24 @@ function StudentsDetailsTable() {
     };
     students.push(newStudent);
     setStudents(students);
+  };
+
+  const handleUpdate = (studentData: any) => {
+    const newStudent = {
+      id: studentData.id,
+      image: studentData.image,
+      fname: studentData.fname,
+      lname: studentData.lname,
+      index: studentData.index,
+      contactNo: studentData.contactNo,
+    };
+    const newStudentList: any = students
+      .filter((student) => {
+        return student.id !== studentData.id;
+      })
+      .push(newStudent);
+
+    setStudents(newStudentList);
   };
 
   return (
@@ -73,6 +90,7 @@ function StudentsDetailsTable() {
                   index={student.index}
                   telephone={student.contactNo}
                   onDelete={() => handleDelete(student.id)}
+                  onUpdate={() => handleUpdate(student)}
                 />
               );
             })}
@@ -82,8 +100,12 @@ function StudentsDetailsTable() {
       <Button onClick={handleOnClick} color="inherit">
         Add New Student
       </Button>
-      {open === true && (
-        <AddStudentPopup open={open} onClose={handleClose} onAdd={handleAdd} />
+      {openAdd === true && (
+        <AddStudentPopup
+          open={openAdd}
+          onClose={handleClose}
+          onAdd={handleAdd}
+        />
       )}
     </div>
   );
