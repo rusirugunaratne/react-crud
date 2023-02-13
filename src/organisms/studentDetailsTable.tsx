@@ -136,7 +136,7 @@ function StudentsDetailsTable() {
       <Dialog open={openUpdate} onClose={onClose}>
         <DialogTitle>Edit Student</DialogTitle>
         <DialogContent>
-          <DialogContentText>Add a New Student to the School</DialogContentText>
+          <DialogContentText>Edit Student Details</DialogContentText>
           <TextField
             defaultValue={fname}
             autoFocus

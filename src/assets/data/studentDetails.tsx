@@ -27,7 +27,7 @@ const studentDetails = [
     contactNo: "+55 121 232 32",
   },
   {
-    id: 3,
+    id: 4,
     image:
       "https://m.media-amazon.com/images/M/MV5BZmE0NzNiNzQtYTVlYS00MjljLWE4MTgtYzYxNjU2NjZkM2M4XkEyXkFqcGdeQXVyNjY5NDgzNjQ@._V1_UX140_CR0,0,140,209_AL_.jpg",
     fname: "Daniel",
