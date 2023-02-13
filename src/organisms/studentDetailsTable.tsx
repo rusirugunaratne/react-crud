@@ -17,6 +17,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
+import "./index.css";
 
 function StudentsDetailsTable() {
   const [openAdd, setOpen] = useState(false);
@@ -87,7 +88,7 @@ function StudentsDetailsTable() {
 
       {UpdateDialogPopup()}
 
-      <Fab onClick={handleOnClick} variant="extended">
+      <Fab className="addbutton" onClick={handleOnClick} variant="extended">
         ADD NEW STUDENT
       </Fab>
     </div>

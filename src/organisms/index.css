@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
+
+.home {
+  font-family: "Poppins", sans-serif;
+}
+
+.tablearea {
+  margin: 20px;
+  margin-top: 80px;
+}
+
+.addbutton {
+  position: fixed;
+  top: 85%;
+  left: 85%;
+}

@@ -1,13 +1,12 @@
-import * as React from "react";
-import styles from "../_index.module.scss";
 import ButtonAppBar from "../molecules/appBar";
 import StudentsDetailsTable from "./studentDetailsTable";
+import "./index.css";
 
 function StudentManagementHome() {
   return (
-    <div>
+    <div className="home">
       <ButtonAppBar />
-      <div>
+      <div className="tablearea">
         <StudentsDetailsTable />
       </div>
     </div>
