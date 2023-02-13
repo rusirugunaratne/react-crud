@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import { StyledTableCell, StyledTableRow } from "./tableViews";
 import Button from "@mui/material/Button";
+import { useState } from "react";
 
 type StudentDetails = {
   id: number;

@@ -9,9 +9,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 
 type AddStudentPopupProps = {
+  student: any;
   open: boolean;
   onClose: any;
-  onAdd: any;
+  onUpdate: any;
 };
 
 export const EditStudentPopup = (props: AddStudentPopupProps) => {
@@ -28,6 +29,7 @@ export const EditStudentPopup = (props: AddStudentPopupProps) => {
       <DialogContent>
         <DialogContentText>Add a New Student to the School</DialogContentText>
         <TextField
+          defaultValue={props.student.fname}
           autoFocus
           margin="dense"
           id="fname"
@@ -98,7 +100,8 @@ export const EditStudentPopup = (props: AddStudentPopupProps) => {
         </Button>
         <Button
           onClick={() =>
-            props.onAdd({
+            props.onUpdate({
+              id: props.student.id,
               image: image,
               fname: fname,
               lname: lname,
