@@ -33,17 +33,17 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
 
   const contactNumberValidation = () => {
     var regExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    return contactNo.match(regExp);
+    return regExp.test(contactNo);
   };
 
   const validateForm = () => {
-    return (
-      fname !== "" &&
+    return fname !== "" &&
       lname !== "" &&
-      urlValidation() &&
       indexValidation() &&
-      (image === "" ? true : urlValidation())
-    );
+      contactNumberValidation() &&
+      image === ""
+      ? true
+      : urlValidation();
   };
 
   return (
@@ -80,7 +80,7 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
-          helperText={indexValidation() ? "" : "Invalid Index (min 4 digits)"}
+          helperText={indexValidation() ? "" : "Invalid Index"}
           error={indexValidation() ? false : true}
           required
           autoFocus
@@ -110,7 +110,7 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
-          error={urlValidation() ? false : true}
+          error={image !== "" && urlValidation() ? false : true}
           autoFocus
           margin="dense"
           id="image"
