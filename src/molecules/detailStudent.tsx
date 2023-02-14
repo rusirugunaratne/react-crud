@@ -19,7 +19,7 @@ export const DetailStudent = (props: StudentDetails) => {
   return (
     <StyledTableRow>
       <StyledTableCell component="th" scope="row">
-        <Avatar alt="Remy Sharp" src={props.image} />
+        <Avatar alt={props.fname} src={props.image} />
       </StyledTableCell>
       <StyledTableCell align="right">{props.fname}</StyledTableCell>
       <StyledTableCell align="right">{props.lname}</StyledTableCell>
