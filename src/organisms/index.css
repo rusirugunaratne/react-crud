@@ -13,8 +13,13 @@
   margin-top: 80px;
 }
 
+.table {
+  margin-top: 15px;
+}
+
 .addbutton {
-  position: fixed;
-  top: 200px;
-  left: 1300px;
+  position: relative;
+  margin: auto;
+  align-self: center;
+  margin-bottom: 20px;
 }

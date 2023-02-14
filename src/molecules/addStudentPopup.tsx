@@ -22,6 +22,10 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
   const [index, setIndex] = useState(0);
   const [contactNo, setContactNo] = useState("");
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Dialog open={open} onClose={props.onClose}>
       <DialogTitle>Add New Student</DialogTitle>

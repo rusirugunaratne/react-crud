@@ -18,6 +18,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import "./index.css";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
 function StudentsDetailsTable() {
   const [openAdd, setOpen] = useState(false);
@@ -62,6 +63,7 @@ function StudentsDetailsTable() {
     };
     students.push(newStudent);
     setStudents(students);
+    setOpen(false);
   };
 
   const handleUpdate = (studentData: any) => {
@@ -76,6 +78,14 @@ function StudentsDetailsTable() {
 
   return (
     <div>
+      <Button
+        onClick={handleOnClick}
+        variant="contained"
+        endIcon={<PersonAddAlt1Icon />}
+      >
+        ADD NEW STUDENT
+      </Button>
+
       {DetailsTable()}
 
       {openAdd === true && (
@@ -87,16 +97,12 @@ function StudentsDetailsTable() {
       )}
 
       {UpdateDialogPopup()}
-
-      <Fab className="addbutton" onClick={handleOnClick} variant="extended">
-        ADD NEW STUDENT
-      </Fab>
     </div>
   );
 
   function DetailsTable() {
     return (
-      <TableContainer component={Paper}>
+      <TableContainer className="table" component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -206,7 +212,7 @@ function StudentsDetailsTable() {
         <DialogActions>
           <Button
             onClick={() => {
-              setOpen(false);
+              setUpdate(false);
             }}
           >
             Cancel
@@ -226,7 +232,7 @@ function StudentsDetailsTable() {
               });
 
               setStudents([...newStudentList, newStudent]);
-              console.log(fname);
+              setUpdate(false);
             }}
           >
             Update

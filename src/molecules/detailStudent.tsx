@@ -1,7 +1,8 @@
 import { Avatar } from "@mui/material";
 import { StyledTableCell, StyledTableRow } from "./tableViews";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 
 type StudentDetails = {
   id: number;
@@ -25,12 +26,22 @@ export const DetailStudent = (props: StudentDetails) => {
       <StyledTableCell align="right">{props.index}</StyledTableCell>
       <StyledTableCell align="right">{props.telephone}</StyledTableCell>
       <StyledTableCell align="right">
-        <Button onClick={props.onUpdate} variant="contained" color="success">
+        <Button
+          startIcon={<EditIcon />}
+          onClick={props.onUpdate}
+          variant="contained"
+          color="success"
+        >
           EDIT
         </Button>
       </StyledTableCell>
       <StyledTableCell align="right">
-        <Button onClick={props.onDelete} variant="outlined" color="error">
+        <Button
+          startIcon={<DeleteForeverIcon />}
+          onClick={props.onDelete}
+          variant="outlined"
+          color="error"
+        >
           DELETE
         </Button>
       </StyledTableCell>
