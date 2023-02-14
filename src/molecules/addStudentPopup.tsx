@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -7,6 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
+import { z } from "zod";
 
 type AddStudentPopupProps = {
   open: boolean;
@@ -22,8 +22,27 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
   const [index, setIndex] = useState(0);
   const [contactNo, setContactNo] = useState("");
 
-  const handleClose = () => {
-    setOpen(false);
+  const urlValidation = () => {
+    return z.string().url().safeParse(image).success;
+  };
+
+  const indexValidation = () => {
+    return z.number().int().min(4).safeParse(index).success;
+  };
+
+  const contactNumberValidation = () => {
+    var regExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    return regExp.test(contactNo);
+  };
+
+  const validateForm = () => {
+    return fname !== "" &&
+      lname !== "" &&
+      indexValidation() &&
+      contactNumberValidation() &&
+      image === ""
+      ? true
+      : urlValidation();
   };
 
   return (
@@ -32,6 +51,8 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
       <DialogContent>
         <DialogContentText>Add a New Student to the School</DialogContentText>
         <TextField
+          error={fname === "" ? true : false}
+          required
           autoFocus
           margin="dense"
           id="fname"
@@ -44,6 +65,8 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
+          error={lname === "" ? true : false}
+          required
           autoFocus
           margin="dense"
           id="lname"
@@ -56,6 +79,9 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
+          helperText={indexValidation() ? "" : "Invalid Index"}
+          error={indexValidation() ? false : true}
+          required
           autoFocus
           margin="dense"
           id="index"
@@ -68,6 +94,9 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
+          helperText={contactNumberValidation() ? "" : "Invalid Contact No"}
+          error={contactNumberValidation() ? false : true}
+          required
           autoFocus
           margin="dense"
           id="contact"
@@ -80,6 +109,7 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           }}
         />
         <TextField
+          error={image !== "" && urlValidation() ? false : true}
           autoFocus
           margin="dense"
           id="image"
@@ -87,6 +117,7 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           type="text"
           fullWidth
           variant="standard"
+          helperText={urlValidation() ? "" : "Invalid URL"}
           onChange={(e) => {
             setImage(e.target.value);
           }}
@@ -101,15 +132,17 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
           Cancel
         </Button>
         <Button
-          onClick={() =>
-            props.onAdd({
-              image: image,
-              fname: fname,
-              lname: lname,
-              index: index,
-              contactNo: contactNo,
-            })
-          }
+          onClick={() => {
+            if (validateForm()) {
+              props.onAdd({
+                image: image,
+                fname: fname,
+                lname: lname,
+                index: index,
+                contactNo: contactNo,
+              });
+            }
+          }}
         >
           Add
         </Button>
