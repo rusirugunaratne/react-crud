@@ -24,7 +24,7 @@ function ButtonAppBar() {
       <Toolbar>
         <ManageAccountsIcon />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Student Managemt System
+          Student Management System
         </Typography>
       </Toolbar>
     </AppBar>

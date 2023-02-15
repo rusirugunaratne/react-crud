@@ -36,13 +36,13 @@ export const AddStudentPopup = (props: AddStudentPopupProps) => {
   };
 
   const validateForm = () => {
-    return fname !== "" &&
+    return (
+      fname !== "" &&
       lname !== "" &&
       indexValidation() &&
       contactNumberValidation() &&
-      image === ""
-      ? true
-      : urlValidation();
+      (image === "" ? true : urlValidation())
+    );
   };
 
   return (

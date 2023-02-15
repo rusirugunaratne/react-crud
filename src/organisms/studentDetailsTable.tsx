@@ -47,13 +47,14 @@ function StudentsDetailsTable() {
   };
 
   const validateForm = () => {
-    return fname !== "" &&
+    console.log("Contact ", contactNumberValidation());
+    return (
+      fname !== "" &&
       lname !== "" &&
       indexValidation() &&
       contactNumberValidation() &&
-      image === ""
-      ? true
-      : urlValidation();
+      (image === "" ? true : urlValidation())
+    );
   };
 
   const handleOnClick = () => {

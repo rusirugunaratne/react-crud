@@ -6,7 +6,7 @@ const studentDetails = [
     fname: "Elon",
     lname: "Musk",
     index: 100255,
-    contactNo: "+10 111 222 32",
+    contactNo: "0713758003",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const studentDetails = [
     fname: "Johnny",
     lname: "Depp",
     index: 100256,
-    contactNo: "+15 121 222 32",
+    contactNo: "0728257516",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const studentDetails = [
     fname: "Emma",
     lname: "Watson",
     index: 100257,
-    contactNo: "+55 121 232 32",
+    contactNo: "0778956545",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const studentDetails = [
     fname: "Daniel",
     lname: "Radcliffe",
     index: 100258,
-    contactNo: "+85 151 232 32",
+    contactNo: "0785624475",
   },
 ];
 
