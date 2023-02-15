@@ -19,6 +19,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import "./index.css";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { z } from "zod";
 
 function StudentsDetailsTable() {
   const [openAdd, setOpen] = useState(false);
@@ -31,6 +32,29 @@ function StudentsDetailsTable() {
   const [lname, setLname] = useState("");
   const [index, setIndex] = useState(0);
   const [contactNo, setContactNo] = useState("");
+
+  const urlValidation = () => {
+    return z.string().url().safeParse(image).success;
+  };
+
+  const indexValidation = () => {
+    return z.number().int().min(4).safeParse(index).success;
+  };
+
+  const contactNumberValidation = () => {
+    var regExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    return regExp.test(contactNo);
+  };
+
+  const validateForm = () => {
+    return fname !== "" &&
+      lname !== "" &&
+      indexValidation() &&
+      contactNumberValidation() &&
+      image === ""
+      ? true
+      : urlValidation();
+  };
 
   const handleOnClick = () => {
     setOpen(true);
@@ -144,6 +168,8 @@ function StudentsDetailsTable() {
         <DialogContent>
           <DialogContentText>Edit Student Details</DialogContentText>
           <TextField
+            error={fname === "" ? true : false}
+            required
             defaultValue={fname}
             autoFocus
             margin="dense"
@@ -157,6 +183,8 @@ function StudentsDetailsTable() {
             }}
           />
           <TextField
+            error={lname === "" ? true : false}
+            required
             autoFocus
             defaultValue={lname}
             margin="dense"
@@ -170,6 +198,9 @@ function StudentsDetailsTable() {
             }}
           />
           <TextField
+            helperText={indexValidation() ? "" : "Invalid Index"}
+            error={indexValidation() ? false : true}
+            required
             autoFocus
             defaultValue={index}
             margin="dense"
@@ -183,6 +214,9 @@ function StudentsDetailsTable() {
             }}
           />
           <TextField
+            helperText={contactNumberValidation() ? "" : "Invalid Contact No"}
+            error={contactNumberValidation() ? false : true}
+            required
             autoFocus
             defaultValue={contactNo}
             margin="dense"
@@ -196,6 +230,7 @@ function StudentsDetailsTable() {
             }}
           />
           <TextField
+            error={image !== "" && urlValidation() ? false : true}
             autoFocus
             defaultValue={image}
             margin="dense"
@@ -204,6 +239,7 @@ function StudentsDetailsTable() {
             type="text"
             fullWidth
             variant="standard"
+            helperText={urlValidation() ? "" : "Invalid URL"}
             onChange={(e) => {
               setImage(e.target.value);
             }}
@@ -219,20 +255,24 @@ function StudentsDetailsTable() {
           </Button>
           <Button
             onClick={() => {
-              const newStudent = {
-                id: id,
-                image: image,
-                fname: fname,
-                lname: lname,
-                index: index,
-                contactNo: contactNo,
-              };
-              const newStudentList: any = students.filter((student) => {
-                return student.id !== id;
-              });
+              console.log("Contact ", contactNumberValidation());
+              console.log("Form ", validateForm());
+              if (validateForm()) {
+                const newStudent = {
+                  id: id,
+                  image: image,
+                  fname: fname,
+                  lname: lname,
+                  index: index,
+                  contactNo: contactNo,
+                };
+                const newStudentList: any = students.filter((student) => {
+                  return student.id !== id;
+                });
 
-              setStudents([...newStudentList, newStudent]);
-              setUpdate(false);
+                setStudents([...newStudentList, newStudent]);
+                setUpdate(false);
+              }
             }}
           >
             Update
